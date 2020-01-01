@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from . import median    #From the current directory import medain module
+import median    #From the current directory import medain module
 
 def quartile(arr: list) -> (float, float, float):
 

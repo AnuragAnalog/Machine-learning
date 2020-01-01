@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from . import mean
+import mean
 
 def variance(array: list) -> float:
     """
@@ -13,5 +13,5 @@ def variance(array: list) -> float:
     for element in array:
         var = var + (element - arr_mean)**2
 
-    return var
+    return var/len(array)
 

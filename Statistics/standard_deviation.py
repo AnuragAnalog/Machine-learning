@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 
+import mean
 import numpy as np
-from . import mean
 
-def variance(array: list) -> float:
+def standard_deviation(array: list) -> float:
     """
         Calculates the Variance of a given array, which gives the speread of the distribution.
     """
@@ -14,4 +14,4 @@ def variance(array: list) -> float:
     for element in array:
         var = var + (element - arr_mean)**2
 
-    return np.sqrt(var)
+    return np.sqrt(var/len(array))
