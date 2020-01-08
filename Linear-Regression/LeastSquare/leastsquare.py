@@ -30,6 +30,21 @@ class Regression():
         else:
             return 'Regression Line\n'+str(self.__alpha)+str(self.__beta)+' x'
 
+    def __cost_function(self, x: np.array, y: np.array) -> float:
+        """
+            Calculates the cost of the given regression line.
+        """
+        if len(x) != len(y):
+            print("Dimension mismatch of x and y")
+            return
+
+        J = 0
+        for (xi, yi) in zip(x, y):
+            J = J + (yi - (self.__beta*xi - self.__alpha))**2
+        J = J/len(x)
+
+        return J
+
     def fitting(self, x: np.array, y: np.array) -> (float, float):
         """
             Computes the regression co-efficients for a simple linear regrssion.
@@ -40,6 +55,7 @@ class Regression():
 
         self.__beta = (np.mean(x*y)-np.mean(x)*np.mean(y))/(np.mean(x**2)-np.mean(x)**2)
         self.__alpha = np.mean(y) - (self.__beta * np.mean(x))
+        print("The Cost Function with the obtained parameters is", self.__cost_function(x, y))
 
         return self.__alpha, self.__beta
 
@@ -54,7 +70,7 @@ class Regression():
         plt.plot(x, yp)
 
         fig.add_subplot(2,1,2)
-        plt.scatter(yp, y-yp)
+        plt.scatter(yp, y-yp)       # Residual plot
 
         plt.show()
 
