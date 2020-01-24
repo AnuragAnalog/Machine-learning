@@ -13,3 +13,11 @@ It is a characteristic S-shaped function; the domain of the function is R, which
 * *ReLU*
 
 It is a piecewise function, which outputs the number itself if +ve else 0.
+
+![relu](./Activation-functions/relu.png)
+
+* Softmax
+
+It's a mathematical function which gives a normalized exponential vector of n-input vector, which is probabilistic distribution.
+
+![softmax](./Activation-functions/softmax.jpg)
