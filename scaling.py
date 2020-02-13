@@ -4,7 +4,7 @@ import sys
 import numpy as np
 import pandas as pd
 
-class scaling():
+class Scaling():
     """
         A Class which contains some of the popular scaling methods.
     """
