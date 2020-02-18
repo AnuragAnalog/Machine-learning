@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 import numpy as np
-import pandas as pd
 
 class OneHotEncoder():
     def __init__(self):
@@ -41,3 +40,36 @@ class OneHotEncoder():
                     break
 
         return np.array(encoded).reshape(self.row, self.column)
+
+class categorize():
+    def __init__(self):
+        self.unique = dict()
+        self.fit_called = False
+        self.row = 2
+
+    def __str__(self):
+        if self.fit_called:
+            return "Encoding is: "+str(self.unique)
+        else:
+            return "call the fit method to initialize some parameters"
+    def fit(self, x):
+        index = 0
+        self.fit_called = True
+        unique_values = set(x)
+
+        for value in unique_values:
+            self.unique[value] = index
+            index = index + 1
+        self.row = len(x)
+
+        return
+
+    def transform(self, x):
+        encoded = list()
+        for col in x:
+            for key in self.unique.keys():
+                if col == key:
+                    encoded.append(self.unique[key])
+                    break
+
+        return np.array(encoded)
