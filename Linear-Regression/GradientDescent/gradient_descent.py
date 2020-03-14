@@ -19,6 +19,9 @@ def input_data(self, n: int) -> (np.array, np.array):
     return np.array(x), np.array(y)
 
 class Gradent_descent():
+    """
+    Fit a linear model using gradient descent
+    """
     def __init__(self) -> None:
         self.__alpha = 0.0
         self.__beta = 0.0
@@ -31,9 +34,7 @@ class Gradent_descent():
             return 'Regression Line\n'+str(self.__alpha)+str(self.__beta)+' x'
 
     def __cost_function(self, x: np.array, y: np.array) -> float:
-        """
-            Calculates the cost of the given regression line.
-        """
+        # Calculates the cost of the given regression line.
         if len(x) != len(y):
             print("Dimension mismatch of x and y")
             return
@@ -45,11 +46,33 @@ class Gradent_descent():
 
         return J
 
-    def fitting(self, x: np.array, y: np.array, alpha: float =None, beta: float =None, learning_rate: int =None, iterate: int =True) -> (float, float):
+    def fitting(self, x: np.array, y: np.array, alpha: float =None, beta: float =None, learning_rate: float =None, iterate: int =True) -> (float, float):
         """
-            Computes the regression co-efficients for a simple linear regrssion
-            by gradient descent method.
+        Fit a linear model
+
+        Parameters
+        ----------
+        x : ndarray, list
+            A 1-d array which represents features array of the data
+        y : ndarray, list
+            A 1-d array which represents labels of the data
+        alpha : float, default None
+            Intercept of the model
+        beta : float, default None
+            Slope of the model
+        learning_rate : float, default None
+            Learning rate for the convergence
+        iterate : int, default True
+            Number of iterations
+
+        Returns
+        -------
+        __alpha : float
+            calculated intercept
+        __beta : float
+            calculated slope
         """
+
         if len(x) != len(y):
             print("Dimension mismatch of x and y")
             return
@@ -79,6 +102,21 @@ class Gradent_descent():
         print("The Cost Function with the obtained parameters is", self.__cost_function(x, y))
 
         return self.__alpha, self.__beta
+
+    def predict(self, x_new) -> float:
+        """
+        predict the label for a new observation
+        Parameters
+        ----------
+        x_new : ndarray, list
+            features of the test observation
+
+        Returns
+        -------
+        y_hat : float
+            predicted label
+        """
+        pass
 
     def plotting(self, x: np.array, y: np.array, yp: np.array) -> None:
         """
