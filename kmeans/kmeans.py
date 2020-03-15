@@ -20,5 +20,28 @@ class kMeans():
             self.cluster_names[str(mapping[0])] = mapping[1]
         return
 
-    def cluster(self):
+    def total_cluster_variance(self):
         pass
+
+    def within_cluster_variance(self):
+        pass
+
+    def fit(self, X, labels=None):
+        """
+        Parameters
+        ----------
+        X : ndarray, list
+            A n-d array which represents the data
+
+        Returns
+        -------
+        """
+        if labels is not None:
+            uniq_labels = list(set(labels))
+            self.__encode_to_clusters(uniq_labels)
+
+    def predict(self):
+        pass
+
+if __name__ == '__main__':
+    pass
