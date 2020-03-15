@@ -4,6 +4,7 @@ class Node():
     def __init__(self, value):
         self.value = value
         self.cluster_no = -1
+        self.cluster_name = ""
 
     def __str__(self):
         if self.cluster_no == -1:
@@ -19,3 +20,9 @@ class Node():
 
     def set_cluster(self, cluster_no):
         self.cluster_no = cluster_no
+
+    def get_cluster_name(self):
+        return self.cluster_name
+
+    def set_cluster_name(self, name):
+        self.cluster_name = name
