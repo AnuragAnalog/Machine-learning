@@ -16,6 +16,12 @@ class Least_square():
     def __str__(self):
         return "Multiple_Linear_Regression(Co-effients are: "+str(self.coef)+")"
 
+    def __penalty_term(self):
+        term = np.diag(np.ones(self.features+1))
+        term[0][0] = 0
+
+        return term
+
     def get_params(self):
         """
         Returns
@@ -26,7 +32,7 @@ class Least_square():
 
         return self.coef
 
-    def fit(self, X, y):
+    def fit(self, X, y, lambda_value=0.001):
         """
         Parameters
         ----------
@@ -41,11 +47,14 @@ class Least_square():
             returns a n-d array of co-efficients
         """
 
+        self.__lambda = lambda_value
         self.training_size = len(X)
         self.features = X.shape[1]
 
+        self.__penalty_term()
+
         X = np.append(np.ones((self.training_size, 1)).reshape(-1, 1), np.array(X), axis=1)
-        self.coef = np.dot(np.dot(np.linalg.inv(np.dot(X.transpose(), X)), X.transpose()), y).T
+        self.coef = np.dot(np.dot(np.linalg.inv(np.dot(X.transpose(), X) + self.__lambda * self.__penalty_term()), X.transpose()), y).T
 
         return self.coef
 
